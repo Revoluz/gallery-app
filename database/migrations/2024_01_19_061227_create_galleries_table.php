@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('path');
             $table->text('description');
-            $table->dateTime('time_upload');
-            $table->integer('like_post')->default(0);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->enum('status', ['active', 'banned']);
+            $table->boolean('status')->default(true);
+
+            // $table->enum('status', ['active', 'banned'])->default('active');
             $table->timestamps();
         });
     }

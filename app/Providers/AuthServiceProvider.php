@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -21,6 +23,22 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('auth.guard', function (User $user, User $user_page) {
+            // dd($user);
+            // $user == user auth
+            if ($user->slug != $user_page->slug) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+        Gate::define('admin.guard', function (User $user) {
+            // dd($user);
+            if ($user->level != 'admin') {
+                return false;
+            } else {
+                return true;
+            }
+        });
     }
 }
