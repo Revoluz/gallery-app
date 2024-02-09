@@ -31,8 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <img src= "{{ asset('/dist/img/logo-img.png') }} " style="width: 200px" alt="" />
         <div class="row col-12 align-items-center">
             <h1 class="text-center invalid-feedback">LOGIN</h1>
-            <form action="{{ route('login.authenticate') }}" method="POST"
-                class="d-flex flex-column align-items-center">
+            <form action="" method="POST" class="d-flex flex-column align-items-center">
                 @csrf
                 <div class="form-group col-lg-8 col-12 px-0">
                     <label for="Username">Username</label>
@@ -61,7 +60,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <p>
             Don’t have an account?
-            <a href="{{ route('register') }}" class="fw-bold">Register</a>
+            <a href="" class="fw-bold">Register</a>
         </p>
     </div>
     <!-- REQUIRED SCRIPTS -->

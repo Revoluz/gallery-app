@@ -49,7 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Notifications Dropdown Menu -->
                 <ul class="navbar-nav ml-auto">
                     <li class="btn btn-primary ml-auto nav-item">
-                        <a href="{{ route('profile.index', auth()->user()) }}" class=" text-decoration-none text-white">
+                        <a href="" class=" text-decoration-none text-white">
                             Back to Profile <i class="fas fa-sign-out-alt"></i>
                         </a>
                     </li>

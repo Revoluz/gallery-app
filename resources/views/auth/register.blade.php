@@ -34,62 +34,62 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <img src= "{{ asset('/dist/img/logo-img.png') }} " style="width: 200px" alt="" />
         <div class="row col-12 align-items-center">
             <h1 class="text-center">Register</h1>
-            @if (Route::is('register'))
-                <form action="{{ route('register.store') }}" method="POST"
-                    class="d-flex flex-column align-items-center">
-                @else
-                    <form action="{{ route('register.store.admin') }}" method="POST"
-                        class="d-flex flex-column align-items-center">
-            @endif
-            @csrf
-            <div class="form-group col-lg-8 col-12 px-0">
-                <label for="name">Name</label>
-                <input type="text" style="height: 56px" class="form-control border-black rounded-1" id="name"
-                    value="{{ @old('name') }}" placeholder="Name" name="name" />
-                @error('name')
-                    <div class="invalid-feedback d-block">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="form-group col-lg-8 col-12 px-0">
-                <label for="Username">Username</label>
-                <input type="text" style="height: 56px" class="form-control border-black rounded-1" id="username"
-                    value="{{ @old('username') }}" placeholder="Username" name="username" />
-                @error('username')
-                    <div class="invalid-feedback d-block">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="form-group col-lg-8 col-12 px-0">
-                <label for="email">Email</label>
-                <input type="email" style="height: 56px" class="form-control border-black rounded-1" id="email"
-                    value="{{ old('email') }}" placeholder="example@gmail.com" name="email" />
-                @error('email')
-                    <div class="invalid-feedback d-block">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="form-group col-lg-8 col-12 px-0">
-                <label for="password">Password</label>
-                <input type="password" style="height: 56px" class="form-control border-black rounded-1" id="password"
-                    placeholder="Password" name="password" />
-                @error('password')
-                    <div class="invalid-feedback d-block">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-dark btn-lg col-8 fw-bold">
-                Register
-            </button>
+            {{-- if (Route::is('register')) --}}
+            <form action="" method="POST" class="d-flex flex-column align-items-center">
+                {{-- @else --}}
+                {{-- store admin --}}
+                {{-- <form action="" method="POST"
+                        class="d-flex flex-column align-items-center"> --}}
+                {{-- @endif --}}
+                @csrf
+                <div class="form-group col-lg-8 col-12 px-0">
+                    <label for="name">Name</label>
+                    <input type="text" style="height: 56px" class="form-control border-black rounded-1"
+                        id="name" value="{{ @old('name') }}" placeholder="Name" name="name" />
+                    @error('name')
+                        <div class="invalid-feedback d-block">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group col-lg-8 col-12 px-0">
+                    <label for="Username">Username</label>
+                    <input type="text" style="height: 56px" class="form-control border-black rounded-1"
+                        id="username" value="{{ @old('username') }}" placeholder="Username" name="username" />
+                    @error('username')
+                        <div class="invalid-feedback d-block">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group col-lg-8 col-12 px-0">
+                    <label for="email">Email</label>
+                    <input type="email" style="height: 56px" class="form-control border-black rounded-1"
+                        id="email" value="{{ old('email') }}" placeholder="example@gmail.com" name="email" />
+                    @error('email')
+                        <div class="invalid-feedback d-block">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group col-lg-8 col-12 px-0">
+                    <label for="password">Password</label>
+                    <input type="password" style="height: 56px" class="form-control border-black rounded-1"
+                        id="password" placeholder="Password" name="password" />
+                    @error('password')
+                        <div class="invalid-feedback d-block">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <button type="submit" class="btn btn-dark btn-lg col-8 fw-bold">
+                    Register
+                </button>
             </form>
         </div>
         <p>
             Alerdy Have an Account?
-            <a href="{{ route('login') }}" class="fw-bold">Login</a>
+            <a href="" class="fw-bold">Login</a>
         </p>
     </div>
 

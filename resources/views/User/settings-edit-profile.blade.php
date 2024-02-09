@@ -6,7 +6,7 @@
     <div class="col-12 mt-156 mb-3">
         <div class="container d-flex gap-3">
             @include('Component.User.sidebar-setting')
-            <form action="{{ route('user.update', $user->slug) }}" method="POST" class="col-md-8 col-12 px-0">
+            <form action="" method="POST" class="col-md-8 col-12 px-0">
                 @csrf
                 @method('put')
                 <div class="bg-white setting-container rounded-40 px-4">
@@ -15,7 +15,7 @@
                         <div class="form-group col-md-6">
                             <label for="Name">Name</label>
                             <input type="text" name="name" class="form-control border-dark" id="Name"
-                                value="{{ $user->name }}" placeholder="Enter name" />
+                                value="" placeholder="Enter name" />
                             @error('name')
                                 <div class="invalid-feedback d-block">
                                     {{ $message }}
@@ -26,7 +26,7 @@
                         <div class="form-group col-md-6">
                             <label for="Username">Username</label>
                             <input type="text" class="form-control border-dark" id="Username" name="username"
-                                value="{{ $user->username }}" placeholder="Enter username" />
+                                value="" placeholder="Enter username" />
                             @error('username')
                                 <div class=" invalid-feedback d-block">
                                     {{ $message }}
@@ -36,7 +36,7 @@
                         <div class="form-group col-md-6">
                             <label for="email">Email address</label>
                             <input type="email" class="form-control border-dark" id="email" placeholder="Enter email"
-                                name="email" value="{{ $user->email }}" />
+                                name="email" value="" />
                             @error('email')
                                 <div class=" d-block invalid-feedback">
                                     {{ $message }}

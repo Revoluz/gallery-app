@@ -10,16 +10,13 @@
                 @auth
 
                     <div class="d-flex gap-4">
-                        <a href="{{ route('home.index') }}"
-                            class="btn btn-lg  {{ Route::is('home.index') ? '' : 'bg-opacity-25' }} rounded-4 fw-bold bg-warning d-none d-md-block">
+                        <a href="" class="btn btn-lg  'bg-opacity-25'  rounded-4 fw-bold bg-warning d-none d-md-block">
                             Latest
                         </a>
-                        <a href="{{ route('home.popular') }}"
-                            class="btn btn-lg  {{ Route::is('home.popular') ? '' : 'bg-opacity-25' }} rounded-4 fw-bold bg-warning  d-none d-md-block">
+                        <a href="" class="btn btn-lg  bg-opacity-25 rounded-4 fw-bold bg-warning  d-none d-md-block">
                             Popular
                         </a>
-                        <a href="{{ route('home.random') }}"
-                            class="btn btn-lg {{ Route::is('home.random') ? '' : 'bg-opacity-25' }} rounded-4 fw-bold bg-warning   d-none d-md-block">
+                        <a href="" class="btn btn-lg bg-opacity-25 rounded-4 fw-bold bg-warning   d-none d-md-block">
                             Random
                         </a>
                         <div class="btn-group d-md-none">
@@ -29,14 +26,14 @@
 
                             <ul class="dropdown-menu dropdown-menu-left"
                                 style=" position: absolute; transform: translate3d(-5px, 37px, 0px); top: 0px; will-change: transform; ">
-                                <li class="{{ Route::is('home') ? 'bg-warning' : '' }} ">
-                                    <a href="{{ route('home.index') }} " class="dropdown-item"> Latest </a>
+                                <li class="bg-warning">
+                                    <a href="" class="dropdown-item"> Latest </a>
                                 </li>
-                                <li class="{{ Route::is('home.popular') ? 'bg-warning' : '' }}">
-                                    <a href="{{ route('home.popular') }}" class="dropdown-item"> Popular </a>
+                                <li class="bg-warning">
+                                    <a href="" class="dropdown-item"> Popular </a>
                                 </li>
-                                <li class="{{ Route::is('home.random') ? 'bg-warning' : '' }}">
-                                    <a href="{{ route('home.random') }}" class="dropdown-item"> Random </a>
+                                <li class="bg-warning">
+                                    <a href="" class="dropdown-item"> Random </a>
                                 </li>
                             </ul>
                         </div>
@@ -54,11 +51,9 @@
                     </div>
                 </div>
             </div>
-            @if (!$images->count())
-                <div class="alert alert-danger text-center">
-                    No Images Found.
-                </div>
-            @endif
+            <div class="alert alert-danger text-center">
+                No Images Found.
+            </div>
         </div>
     </div>
 @endsection

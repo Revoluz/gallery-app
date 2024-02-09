@@ -6,8 +6,7 @@
     <div class="col-12 mt-156 mb-3">
         <div class="container d-flex gap-3">
             @include('Component.User.sidebar-setting')
-            <form action="{{ route('settings.account-management.update', $user->slug) }}" method="POST"
-                enctype="multipart/form-data" class="col-md-8 col-12 px-0">
+            <form action="" method="POST" enctype="multipart/form-data" class="col-md-8 col-12 px-0">
                 @csrf
                 @method('put')
                 <div class="bg-white setting-container rounded-40 px-4">
@@ -16,7 +15,7 @@
                         <div class="form-group col-md-10">
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" name="description" rows="3" maxlength="300" placeholder="Enter ...">{{ $data->description ?? '' }}</textarea>
+                                <textarea class="form-control" name="description" rows="3" maxlength="300" placeholder="Enter ..."></textarea>
                                 @error('description')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -44,8 +43,8 @@
                                 <p class="m-0 ms-2 text-gray">Instagram</p>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="instagram" id="ig-account"
-                                    value="{{ $data->instagram ?? '' }}" placeholder="Input account" />
+                                <input type="text" class="form-control" name="instagram" id="ig-account" value=""
+                                    placeholder="Input account" />
                                 @error('instagram')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -60,7 +59,7 @@
                             </div>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="twitter" id="x-account"
-                                    placeholder="Input account" value="{{ $data->twitter ?? '' }}" />
+                                    placeholder="Input account" value="" />
                                 @error('twitter')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -75,7 +74,7 @@
                             </div>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="fb-account" name="facebook"
-                                    placeholder="Input account" value="{{ $data->facebook ?? '' }}" />
+                                    placeholder="Input account" value="" />
                                 @error('facebook')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -86,7 +85,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <a href="{{ route('profile.index', $user->name) }}">
+                    <a href="">
                         <button type="button" class="btn btn-secondary px-5 py-2">Back</button>
                     </a>
                     <button class="btn btn-dark px-5 py-2" type="submit">Save</button>
