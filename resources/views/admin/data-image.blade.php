@@ -48,35 +48,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($images as $image)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $image->user->username }}</td>
-                                            <td>{{ $image->name }}</td>
-                                            <td>
-                                                <img class="w-25" src="{{ $image->images() }}" alt="" />
-                                            </td>
-                                            <td class="d-flex gap-2">
-                                                <form action="{{ route('admin.image.status', $image->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('put')
-                                                    @if ($image->status)
-                                                        <button type="submit" class="btn btn-success">
-                                                            Active
-                                                        </button>
-                                                    @else
-                                                        <button type="submit" class="btn btn-danger">
-                                                            Banned
-                                                        </button>
-                                                    @endif
-                                                </form>
-                                                <a href="{{ route('images.show', $image->id) }}"
-                                                    class="btn btn-primary ml-1">
-                                                    Show
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    {{-- foreach ($images as $image) --}}
+                                    <tr>
+                                        <td>1</td>
+                                        <td>username</td>
+                                        <td>Image Name</td>
+                                        <td>
+                                            <img class="w-25" src="image" alt="" />
+                                        </td>
+                                        <td class="d-flex gap-2">
+                                            <form action="" method="POST">
+                                                {{-- @csrf --}}
+                                                {{-- method('put') --}}
+                                                {{-- if ($image->status) --}}
+                                                <button type="submit" class="btn btn-success">
+                                                    Active
+                                                </button>
+                                                {{-- @else --}}
+                                                <button type="submit" class="btn btn-danger">
+                                                    Banned
+                                                </button>
+                                                {{-- @endif --}}
+                                            </form>
+                                            <a href="" class="btn btn-primary ml-1">
+                                                Show
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {{-- @endforeach --}}
                                 </tbody>
                                 <tfoot>
                                     <tr>
