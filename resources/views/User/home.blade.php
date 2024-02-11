@@ -110,8 +110,8 @@
                         // msnry.recalculate();
                         msnry.runOnImageLoad(function() {
                             // console.log('I only get called when all images are loaded');
-                            msnry.recalculate(true, true);
-                        });
+                            msnry.recalculate(true);
+                        }, true);
 
 
                     })

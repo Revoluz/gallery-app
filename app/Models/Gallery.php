@@ -25,6 +25,7 @@ class Gallery extends Model
     }
     public function images()
     {
+        // dd(Gallery::where('path', $this->path));
         if ($this->path) {
             return asset('storage/' . $this->path);
         }
