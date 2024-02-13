@@ -28,11 +28,16 @@
                         <p class="lead m-0">{{ $image->user->username }}</p>
                     </div>
                     @can('auth.guard', $image->user)
-                        <button type="button" class="btn btn-lg bg-secondary-subtle rounded-5 fw-bold m-2" data-toggle="modal"
-                            data-target="#modal-lg">
-                            <i class="fas fa-plus"></i>
-                            Edit Image
-                        </button>
+                        @if ($image->status)
+                            <button type="button" class="btn btn-lg bg-secondary-subtle rounded-5 fw-bold m-2"
+                                data-toggle="modal" data-target="#modal-lg">
+                                <i class="fas fa-plus"></i>
+                                Edit Image
+                            </button>
+                        @else
+                            <button type="button" class="btn btn-danger btn-lg m-2" data-toggle="modal"
+                                data-target="#modal-lg">Banned</button>
+                        @endif
                     @endcan
                 </div>
                 {{-- <div class="d-flex gap-3 g-4 align-items-center">

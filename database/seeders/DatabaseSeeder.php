@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
             if ($i < 36) {
                 $gallery['user_id'] = 1;
                 $gallery['created_at'] = Carbon::now();
-            } elseif ($i <= 55) {
+            } elseif ($i <= 50) {
                 $gallery['user_id'] = 2;
                 $gallery['created_at'] = Carbon::now()->subMonth();
             } else {

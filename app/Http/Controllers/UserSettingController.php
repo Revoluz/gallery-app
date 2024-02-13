@@ -83,22 +83,29 @@ class UserSettingController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('auth.guard', $user);
+
         // $this->authorize('auth.guard', $user);
         if ($user->galleries) {
             // Hapus galeri terkait
             // dd($user);
-            $user->galleries->each(function ($image) {
-                // Storage::disk('public')->delete('public/gallery/' . $gallery->name);
-                // if (Storage::disk('public')->exists('gallery/' . $gallery->name)) {
-                //     Storage::disk('public')->delete('gallery/' . $gallery->name);
-                // }
-                if (Storage::disk('public')->exists($image->path)) {
-                    Storage::disk('public')->delete($image->path);
+            // $user->galleries->each(function ($image) {
+            //     // Storage::disk('public')->delete('public/gallery/' . $gallery->name);
+            //     // if (Storage::disk('public')->exists('gallery/' . $gallery->name)) {
+            //     //     Storage::disk('public')->delete('gallery/' . $gallery->name);
+            //     // }
+            //     if (Storage::disk('public')->exists($image->path)) {
+            //         Storage::disk('public')->delete($image->path);
+            //     }
+            // });
+            foreach ($user->galleries as $gallery) {
+                if (Storage::disk('public')->exists($gallery->path)) {
+                    Storage::disk('public')->delete($gallery->path);
                 }
-            });
+            }
         }
-        // Hapus foto profil jika ada
-        if ($user->profile->photo) {
+        // Hapus foto profil jika ada test
+        if ($user->profile->photo ?? false) {
             if (Storage::disk('public')->exists($user->profile->photo)) {
                 Storage::disk('public')->delete($user->profile->photo);
             }

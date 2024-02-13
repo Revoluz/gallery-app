@@ -46,8 +46,10 @@ class GalleryController extends Controller
      */
     public function show(Request $request, Gallery $image)
     {
-        if (!$image->status && !auth()->user()->level == 'admin' || auth()->user() != $image->user && !$image->status) {
-            abort(404);
+        if (!$image->status) {
+            if (auth()->user()->level !== 'admin' && auth()->user() != $image->user) {
+                abort(404);
+            }
         }
         $comments = $image->comments;
         return view('User.detail-image-home', [
