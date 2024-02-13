@@ -33,6 +33,9 @@
                         <i class="fas fa-plus"></i>
                         Edit Image
                     </button>
+                    <button type="button" class="btn btn-danger btn-lg m-2" data-toggle="modal"
+                        data-target="#modal-lg">Banned
+                    </button>
                     {{-- @endcan --}}
                 </div>
                 {{-- <div class="d-flex gap-3 g-4 align-items-center">

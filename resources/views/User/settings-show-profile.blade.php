@@ -73,6 +73,13 @@
                     <form action="" method="POST">
                         @csrf
                         @method('delete')
+                        <div class="form-check my-2">
+                            <input class="form-check-input border-1 border-black" type="checkbox" value=""
+                                id="flexCheckDefault" required>
+                            <label class="form-check-label" for="flexCheckDefault" class="fw-bold">
+                                I agree with the Terms & Conditions and want to delete my account permanently.
+                            </label>
+                        </div>
                         <button type="submit" class="btn btn-danger btn-sm px-5 py-2 fw-bold">Delete</button>
                     </form>
                 </div>
