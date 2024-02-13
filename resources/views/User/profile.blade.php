@@ -1,5 +1,6 @@
 @extends('layout.main')
 @section('head')
+    <link rel="stylesheet" href="{{ asset('plugins/imagehover.css/css/imagehover.min.css/imagehover.css') }}">
 @endsection
 @section('content')
     <div class="setting-container mt-156 col-md-6  col-lg-4 rounded-4 container  mx-md-0 row flex-column align-items-center">
@@ -54,11 +55,7 @@
                 </div>
             </div>
             <div class="mt-4 gallery">
-                {{-- foreach ($images as $image) --}}
-                <a href="" class="d-block">
-                    <img class="w-100" src="" alt="" />
-                </a>
-                {{-- @endforeach --}}
+                @include('User.gallery')
             </div>
         </div>
     </div>
