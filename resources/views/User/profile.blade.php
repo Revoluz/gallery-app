@@ -1,5 +1,6 @@
 @extends('layout.main')
 @section('head')
+    <link rel="stylesheet" href="{{ asset('plugins/imagehover.css/css/imagehover.min.css/imagehover.css') }}">
 @endsection
 @section('content')
     <div class="setting-container mt-156 col-md-6  col-lg-4 rounded-4 container  mx-md-0 row flex-column align-items-center">
@@ -24,7 +25,8 @@
         @can('auth.guard', $user)
             <div class="d-flex flex-column flex-wrap">
                 <div class="d-flex gap-2 flex-column flex-md-row w-100">
-                    <a href="{{ route('user.show', $user->slug) }}" class="btn btn-lg btn-outline-dark bg-secondary-subtle col">
+                    <a href="{{ route('user.show', $user->slug) }}"
+                        class="btn btn-lg btn-outline-dark bg-secondary-subtle col">
                         Settings
                     </a>
                     @can('admin.guard')
@@ -54,11 +56,7 @@
                 </div>
             </div>
             <div class="mt-4 gallery">
-                @foreach ($images as $image)
-                    <a href="{{ route('images.show', ['image' => $image->id]) }}" class="d-block">
-                        <img class="w-100" src="{{ $image->images() }}" alt="" />
-                    </a>
-                @endforeach
+                @include('User.gallery')
             </div>
         </div>
     </div>

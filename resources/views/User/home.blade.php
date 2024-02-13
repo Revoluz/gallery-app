@@ -1,6 +1,7 @@
 @extends('layout.main')
 @section('head')
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{ asset('plugins/imagehover.css/css/imagehover.min.css/imagehover.css') }}">
 @endsection
 @section('content')
     <div class=" col-12 gallery-rounded h-100">

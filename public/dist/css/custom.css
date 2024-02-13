@@ -55,3 +55,11 @@
 #toast-container {
     width: auto !important;
 }
+#cover-title {
+    background-image: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.5));
+    height: auto;
+    /* background-color: none !important; */
+}
+.imghvr-fade img {
+    opacity: 1 !important;
+}
