@@ -18,7 +18,6 @@
                     class="btn bg-black rounded-3 bg-opacity-75 d-none d-md-block text-white text-decoration-none">
                     Home
                 </a>
-                @csrf
                 <input type="text" name="keyword" class="form-control rounded border-black bg-body-secondary"
                     placeholder="Search" aria-label="Search" aria-describedby="button-addon2" required
                     value="{{ request('keyword', '') }}" />

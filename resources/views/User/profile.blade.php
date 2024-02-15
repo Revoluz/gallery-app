@@ -56,7 +56,17 @@
                 </div>
             </div>
             <div class="mt-4 gallery">
-                @include('User.gallery')
+                @foreach ($images as $image)
+                    <a href="{{ route('profile.showImage', ['id' => $image->id, 'user' => auth()->user()]) }}"
+                        class="d-block images">
+                        <figure class="imghvr-fade">
+                            <img class="w-100 shadow-sm" src="{{ $image->images() }}" alt="" loading="lazy" />
+                            <figcaption id="cover-title" class="h-100 d-md-flex align-items-end d-none">
+                                {{ $image->name }}
+                            </figcaption>
+                        </figure>
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>

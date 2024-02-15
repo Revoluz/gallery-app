@@ -27,18 +27,21 @@
                         </a>
                         <p class="lead m-0">{{ $image->user->username }}</p>
                     </div>
-                    @can('auth.guard', $image->user)
-                        @if ($image->status)
-                            <button type="button" class="btn btn-lg bg-secondary-subtle rounded-5 fw-bold m-2"
-                                data-toggle="modal" data-target="#modal-lg">
-                                <i class="fas fa-plus"></i>
-                                Edit Image
-                            </button>
-                        @else
-                            <button type="button" class="btn btn-danger btn-lg m-2" data-toggle="modal"
-                                data-target="#modal-lg">Banned</button>
-                        @endif
-                    @endcan
+                    @if (Route::is('profile.showImage'))
+                        @can('auth.guard', $image->user)
+                            @if ($image->status)
+                                <button type="button" class="btn btn-lg bg-secondary-subtle rounded-5 fw-bold m-2"
+                                    data-toggle="modal" data-target="#modal-lg">
+                                    <i class="fas fa-plus"></i>
+                                    Edit Image
+                                </button>
+                            @else
+                                <button type="button" class="btn btn-danger btn-lg m-2" data-toggle="modal"
+                                    data-target="#modal-lg">Banned</button>
+                            @endif
+                        @endcan
+                    @endif
+
                 </div>
                 {{-- <div class="d-flex gap-3 g-4 align-items-center">
                     <a href="">
@@ -138,63 +141,66 @@
         </div>
     </div>
     {{-- modal edit image --}}
-    @can('auth.guard', $image->user)
-        <div class="modal fade" id="modal-lg">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Image</h4>
+    @if (Route::is('profile.showImage'))
+        @can('auth.guard', $image->user)
+            <div class="modal fade" id="modal-lg">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Image</h4>
 
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('images.update', $image->id) }}" method="POST">
-                            @csrf
-                            @method('put')
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name"
-                                    value="{{ @old('name', $image->name) }}" placeholder="Image Name" name="name" />
-                                @error('name')
-                                    <div class=" invalid-feedback d-block">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('images.update', $image->id) }}" method="POST">
+                                @csrf
+                                @method('put')
                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea class="form-control" rows="3" name="description" placeholder="Enter ...">{{ @old('description', $image->description) }}</textarea>
-                                    @error('description')
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name"
+                                        value="{{ @old('name', $image->name) }}" placeholder="Image Name" name="name" />
+                                    @error('name')
                                         <div class=" invalid-feedback d-block">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control" rows="3" name="description" placeholder="Enter ...">{{ @old('description', $image->description) }}</textarea>
+                                        @error('description')
+                                            <div class=" invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
 
-                            </div>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </form>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <form action="{{ route('images.destroy', $image->id) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger">Delete Image</button>
-                        </form>
-                        <button type="button" class="btn btn-default btn-outline-dark" data-dismiss="modal">
-                            Close
-                        </button>
-                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <form action="{{ route('images.destroy', $image->id) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger">Delete Image</button>
+                            </form>
+                            <button type="button" class="btn btn-default btn-outline-dark" data-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
 
+                    </div>
+                    <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-content -->
+                <!-- /.modal-dialog -->
             </div>
-            <!-- /.modal-dialog -->
-        </div>
-    @endcan
+        @endcan
+    @endif
+
 @endsection
 @section('plugins')
 @endsection

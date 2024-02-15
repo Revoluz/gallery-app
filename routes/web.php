@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
     // profile page
     Route::get('/profile/{user:slug}', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
-    // Route::get('/profile/{user:slug}/image/{id}', [ProfileController::class, 'showImage'])->name('profile.showImage');
+    Route::get('/profile/{user:slug}/image/{id}', [ProfileController::class, 'showImage'])->name('profile.showImage');
 
     Route::resource('settings/user', UserSettingController::class)->except('create');
     Route::get('settings/user/{user:slug}/account-management', [ProfileController::class, 'create'])->name('settings.account-management');

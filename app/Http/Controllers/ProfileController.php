@@ -25,14 +25,16 @@ class ProfileController extends Controller
             'year' => Carbon::now()->year,
         ]);
     }
-    // public function showImage(User $user, Gallery $id)
-    // {
-    //     // dd($image);
-    //     $comments = $id->comments;
-    //     return view('User.detail-image-home', [
-    //         'image' => $id, 'comments' => $comments
-    //     ]);
-    // }
+    public function showImage(User $user, Gallery $id)
+    {
+        // dd($image);
+        $this->authorize('auth.guard', $user);
+
+        $comments = $id->comments;
+        return view('User.detail-image-home', [
+            'image' => $id, 'comments' => $comments
+        ]);
+    }
     // halaman account management
     public function create(User $user)
     {

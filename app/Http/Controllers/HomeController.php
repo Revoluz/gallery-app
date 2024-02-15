@@ -70,10 +70,10 @@ class HomeController extends Controller
         // 'keyword' sesuai dengan nama form
         $keyword = request()->input('keyword');
         $images = Gallery::where('status', 1)->where('name', 'like', '%' . $keyword . '%')->paginate(15);
-        if ($request->ajax()) {
-            $view = view('User.gallery', compact('images'))->render();
-            return response()->json(['html' => $view]);
-        }
+        // if ($request->ajax()) {
+        //     $view = view('User.gallery', compact('images'))->render();
+        //     return response()->json(['html' => $view]);
+        // }
         return view('User.home', compact('images'));
     }
 }
