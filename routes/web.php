@@ -37,8 +37,7 @@ Route::group(['middleware' => ['guest']], function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/popular', [HomeController::class, 'popular'])->name('home.popular');
-    Route::get('/random', [HomeController::class, 'random'])->name('home.random');
+
     Route::get('/search', [HomeController::class, 'search'])->name('search');
 
     // images expect index

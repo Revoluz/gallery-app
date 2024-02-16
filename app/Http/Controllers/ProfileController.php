@@ -55,9 +55,9 @@ class ProfileController extends Controller
         $validated = $request->validate([
             'description' => 'nullable|max:300',
             'photo' => 'nullable|image',
-            'instagram' => 'nullable|active_url',
-            'twitter' => 'nullable|active_url',
-            'facebook' => 'nullable|active_url',
+            'instagram' => 'nullable|url',
+            'twitter' => 'nullable|url',
+            'facebook' => 'nullable|url',
         ]);
         if ($request->has('photo')) {
             $image = $request->file('photo');

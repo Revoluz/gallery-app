@@ -12,15 +12,21 @@
             {{ $user->profile->description ?? '' }}
         </p>
         <div class="d-flex my-2 justify-content-center gap-1">
+            @if ($user->profile->instagram)
             <a href="{{ $user->profile->instagram ?? '' }}">
                 <img src="{{ asset('/dist/img/social-icon-color/instagram.svg') }}" alt="" class="" />
             </a>
+            @endif
+            @if ($user->profile->twitter)
             <a href="{{ $user->profile->twitter ?? '' }}">
                 <img src="{{ asset('/dist/img/social-icon-color/twitter.svg') }}" alt="" class="" />
             </a>
+            @endif
+            @if ($user->profile->twitter)
             <a href="{{ $user->profile->facebook ?? '' }}">
                 <img src="{{ asset('/dist/img/social-icon-color/facebook.svg') }}" alt="" class="" />
             </a>
+            @endif
         </div>
         @can('auth.guard', $user)
             <div class="d-flex flex-column flex-wrap">

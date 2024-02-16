@@ -3,8 +3,13 @@
 @endsection
 @section('content')
     <div class="col-lg-8 col-md-10 align-content-start mb-3 mt-5">
+        @if (Route::is('profile.showImage'))
+        <a href="{{ route('profile.index',$image->user->slug) }}" class="btn col-md-2 bg-white rounded-4 fw-bold btn-lg shadow py-3">
 
-        <a href="{{ url()->previous() }}" class="btn col-md-2 bg-white rounded-4 fw-bold btn-lg shadow py-3">
+        @else
+        <a href="{{ route('home.index') }}" class="btn col-md-2 bg-white rounded-4 fw-bold btn-lg shadow py-3">
+
+        @endif
             <h5 class="m-0">
                 <i class="fas fa-arrow-left" style="margin-right: 8px"></i> Back
             </h5>
@@ -32,7 +37,7 @@
                             @if ($image->status)
                                 <button type="button" class="btn btn-lg bg-secondary-subtle rounded-5 fw-bold m-2"
                                     data-toggle="modal" data-target="#modal-lg">
-                                    <i class="fas fa-plus"></i>
+                                    <i class="fas fa-edit"></i>
                                     Edit Image
                                 </button>
                             @else
