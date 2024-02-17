@@ -55,7 +55,14 @@
                 </div>
             </div>
             <div class="mt-4 gallery">
-                @include('User.gallery')
+                <a href=""
+                    class="d-block images">
+                    <figure class="imghvr-fade">
+                        <img class="w-100 shadow-sm" src="" alt="" loading="lazy" />
+                        <figcaption id="cover-title" class="h-100 d-md-flex align-items-end d-none">
+                        </figcaption>
+                    </figure>
+                </a>
             </div>
         </div>
     </div>

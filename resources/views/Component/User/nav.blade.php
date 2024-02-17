@@ -4,16 +4,16 @@
         <img src="/dist/img/logo-img.png" class="h-100 d-sm-block d-none" alt="" />
     </a>
 
-    @guest
+    {{-- @guest --}}
         <div class="d-flex gap-2">
             <a href="" class="btn btn-dark btn-md">Login</a>
             <a href="" class="btn btn-outline-dark btn-md">Register</a>
         </div>
-    @endguest
-    @auth
+    {{-- @endguest --}}
+    {{-- @auth --}}
         <form action="" method="get" class="w-100">
             <div class="input-group d-flex gap-2">
-                @csrf
+                {{-- @csrf --}}
                 <input type="text" name="keyword" class="form-control rounded border-black bg-body-secondary"
                     placeholder="Search" aria-label="Search" aria-describedby="button-addon2" required value="" />
                 <button class="btn bg-warning rounded-3 bg-opacity-75" type="submit">
@@ -26,6 +26,6 @@
                 class="rounded-circle profile-img border-1 border-black border-width-2 border d-none d-md-block"
                 alt="User Image" />
         </a>
-    @endauth
+    {{-- @endauth --}}
 </nav>
 {{-- @endif --}}

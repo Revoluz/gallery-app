@@ -9,8 +9,8 @@
             <div class="flex-row d-flex align-items-center justify-content-between">
                 <h1 class="fw-bold">Explore</h1>
                 @auth
-
-                    <div class="d-flex gap-4">
+{{-- tatest,popular,random  --}}
+                    {{-- <div class="d-flex gap-4">
                         <a href="" class="btn btn-lg  'bg-opacity-25'  rounded-4 fw-bold bg-warning d-none d-md-block">
                             Latest
                         </a>
@@ -38,7 +38,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                 @endauth
             </div>
             {{-- gallery image container --}}
@@ -55,242 +55,42 @@
             <div class="alert alert-danger text-center">
                 No Images Found.
             </div>
+            <div class="loader text-center mb-5">
+                <div class="d-flex justify-content-center">
+                    <div class="page-load-status">
+                        <div class="spinner-border infinite-scroll-request" role="status"></div>
+                        {{-- <p class="infinite-scroll-request">Loading...</p> --}}
+                        <p class="infinite-scroll-last">End of content</p>
+                        <p class="infinite-scroll-error">No more pages to load</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
 @section('plugins')
-    <!-- Bootstrap 4 -->
-    @if (Route::is('home.index'))
-        <script>
-            var ENDPOINT = "{{ route('home.index') }}";
-            var page = 1;
-            var loading = false;
-            var delayTimeout;
-
-
-            // setTimeout(() => {
-            $(window).scroll(function() {
-
-
-                clearTimeout(delayTimeout);
-
-                if ($(window).scrollTop() + $(window).height() >= ($(document).height() - 20)) {
-                    delayTimeout = setTimeout(function() {
-                        page++;
-                        LoadMore(page);
-                    }, 600);
-                    $('.loader').show()
-
-                }
-            });
-            // }, 3000);
-
-            function LoadMore(page) {
-                // alert("Page : " + page);
-                $.ajax({
-                        url: ENDPOINT + "?page=" + page,
-                        datatype: "html",
-                        type: "get",
-                        beforeSend: function() {
-                            $('.loader').show();
-                        }
-                    })
-                    .done(function(response) {
-                        if (response.html == '') {
-                            $('.loader').html("End");
-                            return;
-                        }
-                        console.log(response.html);
-                        $('.loader').hide();
-                        $(".gallery").append(response.html);
-                        // msnry.recalculate();
-                        msnry.runOnImageLoad(function() {
-                            // console.log('I only get called when all images are loaded');
-                            msnry.recalculate(true, true);
-                        });
-
-
-                    })
-                    .fail(function(jqXHR, ajaxOptions, thrownError) {
-                        console.log('Server error occured');
-                    });
-            }
-        </script>
-    @endif
-    @if (Route::is('home.popular'))
-        <script>
-            var ENDPOINT = "{{ route('home.popular') }}";
-            var page = 1;
-            var loading = false;
-            var delayTimeout;
-
-
-            // setTimeout(() => {
-            $(window).scroll(function() {
-
-
-                clearTimeout(delayTimeout);
-
-                if ($(window).scrollTop() + $(window).height() >= ($(document).height() - 20)) {
-                    delayTimeout = setTimeout(function() {
-                        page++;
-                        LoadMore(page);
-                    }, 600);
-                    $('.loader').show()
-
-                }
-            });
-            // }, 3000);
-
-            function LoadMore(page) {
-                // alert("Page : " + page);
-                $.ajax({
-                        url: ENDPOINT + "?page=" + page,
-                        datatype: "html",
-                        type: "get",
-                        beforeSend: function() {
-                            $('.loader').show();
-                        }
-                    })
-                    .done(function(response) {
-                        if (response.html == '') {
-                            $('.loader').html("End");
-                            return;
-                        }
-                        console.log(response.html);
-                        $('.loader').hide();
-                        $(".gallery").append(response.html);
-                        // msnry.recalculate();
-                        msnry.runOnImageLoad(function() {
-                            // console.log('I only get called when all images are loaded');
-                            msnry.recalculate(true, true);
-                        });
-
-
-                    })
-                    .fail(function(jqXHR, ajaxOptions, thrownError) {
-                        console.log('Server error occured');
-                    });
-            }
-        </script>
-    @endif
-    @if (Route::is('home.random'))
-        <script>
-            var ENDPOINT = "{{ route('home.random') }}";
-            var page = 1;
-            var loading = false;
-            var delayTimeout;
-
-
-            // setTimeout(() => {
-            $(window).scroll(function() {
-
-
-                clearTimeout(delayTimeout);
-
-                if ($(window).scrollTop() + $(window).height() >= ($(document).height() - 20)) {
-                    delayTimeout = setTimeout(function() {
-                        page++;
-                        LoadMore(page);
-                    }, 600);
-                    $('.loader').show()
-
-                }
-            });
-            // }, 3000);
-
-            function LoadMore(page) {
-                // alert("Page : " + page);
-                $.ajax({
-                        url: ENDPOINT + "?page=" + page,
-                        datatype: "html",
-                        type: "get",
-                        beforeSend: function() {
-                            $('.loader').show();
-                        }
-                    })
-                    .done(function(response) {
-                        if (response.html == '') {
-                            $('.loader').html("End");
-                            return;
-                        }
-                        console.log(response.html);
-                        $('.loader').hide();
-                        $(".gallery").append(response.html);
-                        // msnry.recalculate();
-                        msnry.runOnImageLoad(function() {
-                            // console.log('I only get called when all images are loaded');
-                            msnry.recalculate(true, true);
-                        });
-
-
-                    })
-                    .fail(function(jqXHR, ajaxOptions, thrownError) {
-                        console.log('Server error occured');
-                    });
-            }
-        </script>
-    @endif
-    @if (Route::is('search'))
-        <script>
-            var ENDPOINT = "{{ route('search') }}";
-            var page = 1;
-            var loading = false;
-            var delayTimeout;
-
-
-            // setTimeout(() => {
-            $(window).scroll(function() {
-
-
-                clearTimeout(delayTimeout);
-
-                if ($(window).scrollTop() + $(window).height() >= ($(document).height() - 20)) {
-                    delayTimeout = setTimeout(function() {
-                        page++;
-                        LoadMore(page);
-                    }, 600);
-                    $('.loader').show()
-
-                }
-            });
-            // }, 3000);
-
-            function LoadMore(page) {
-                // alert("Page : " + page);
-                $.ajax({
-                        url: ENDPOINT + "?page=" + page,
-                        datatype: "html",
-                        type: "get",
-                        beforeSend: function() {
-                            $('.loader').show();
-                        }
-                    })
-                    .done(function(response) {
-                        if (response.html == '') {
-                            $('.loader').html("End");
-                            return;
-                        }
-                        console.log(response.html);
-                        $('.loader').hide();
-                        $(".gallery").append(response.html);
-                        // msnry.recalculate();
-                        msnry.runOnImageLoad(function() {
-                            // console.log('I only get called when all images are loaded');
-                            msnry.recalculate(true, true);
-                        });
-
-
-                    })
-                    .fail(function(jqXHR, ajaxOptions, thrownError) {
-                        console.log('Server error occured');
-                    });
-            }
-        </script>
-    @endif
-
-
     <script src="{{ asset('dist/js/macy/dist/macy.js') }}"></script>
+    {{-- <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script> --}}
+    <link rel="stylesheet" href="{{ asset('plugins/infinite-scroll/script.js') }}">
+    <script src="{{ asset('plugins/infinite-scroll/script.js') }}"></script>
+    {{-- @if () --}}
+        <script>
+            var endpoint = "{{ route('home.index') }}";
+        </script>
+    {{-- @elseif(Route::is('home.popular'))
+        <script>
+            var endpoint = "{{ route('home.popular') }}";
+        </script>
+    @elseif (Route::is('home.random'))
+        <script>
+            var endpoint = "{{ route('home.random') }}";
+        </script> --}}
+    {{-- @elseif () --}}
+        <script>
+            var endpoint = "{{ route('search') }}";
+        </script>
+    {{-- @endif --}}
+
     <script>
         const msnry = new Macy({
             container: ".gallery",
@@ -301,10 +101,29 @@
                 700: 4,
                 1100: 4,
             },
+            waitForImages: false,
             margin: {
                 x: 8,
                 y: 8,
             },
+
+        });
+        console.log(endpoint);
+
+        var elem = document.querySelector('.gallery')
+        var infiniteScroll = new InfiniteScroll(elem, {
+            path: endpoint+'?page=@{{#}}',
+            status: '.page-load-status',
+            history: false,
+            append: '.images',
+            // debug: true, // Optional: Enable debugging messages
+
+        });
+        infiniteScroll.on('append', function(body, path, items, response) {
+            msnry.runOnImageLoad(function() {
+                // console.log('I only get called when all images are loaded');
+                msnry.recalculate(true);
+            }, true);
         });
     </script>
 @endsection

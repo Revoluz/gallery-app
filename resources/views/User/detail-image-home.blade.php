@@ -14,6 +14,7 @@
     <div
         class="container d-flex col-lg-8 col-md-10 flex-column flex-md-row gallery-rounded h-100 p-0 overflow-hidden row flex-row mb-5 gap-2 mt-0">
         <div class="col p-0 image">
+            {{-- for image --}}
             <img class="w-100 " src="" alt="" />
         </div>
         <div class="col py-4 d-flex flex-column gap-2 mb-1">
@@ -30,7 +31,7 @@
                     {{-- can('auth.guard', $image->user) --}}
                     <button type="button" class="btn btn-lg bg-secondary-subtle rounded-5 fw-bold m-2" data-toggle="modal"
                         data-target="#modal-lg">
-                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-edit"></i>
                         Edit Image
                     </button>
                     <button type="button" class="btn btn-danger btn-lg m-2" data-toggle="modal"
@@ -95,16 +96,14 @@
                 <div>
                     <div class="d-flex justify-content-between">
                         <div class="align-content-center d-flex gap-2">
-                            {{-- <i class="far fa-heart fs-3"></i> {{ $image->likes()->count() }} --}}
-                            {{-- if (Auth::user()->likesImage($image)) --}}
-                            {{-- unlike --}}
+                            {{-- <i class="far fa-heart fs-3"></i> --}}
+
                             <form action="" method="POST">
                                 @csrf
                                 <button type="submit" class="fw-light nav-link fs-6"> <span class="fas fa-heart fs-3 me-1">
                                     </span>
                                 </button>
                             </form>
-                            {{-- @else --}}
                             {{-- like --}}
                             <form action="" method="POST">
                                 @csrf
@@ -112,7 +111,6 @@
                                     </span>
                                 </button>
                             </form>
-                            {{-- @endif --}}
                         </div>
                         <div>
                             {{-- download image --}}
