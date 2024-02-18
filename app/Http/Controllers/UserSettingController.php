@@ -14,11 +14,6 @@ use Illuminate\Support\Facades\Storage;
 class UserSettingController extends Controller
 {
     // remove thsi index
-    public function index()
-    {
-        return view('User.setting-nav-mobile');
-    }
-
     /**
      * Display the specified resource.
      */
