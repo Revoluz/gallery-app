@@ -3,7 +3,7 @@
 @endsection
 @section('content')
     <!-- gallery container -->
-    <div class="col-12 mt-156 mb-3">
+    <div class="col-12 mt-156 " style="margin-bottom: 128px">
         <div class="container d-flex gap-3">
             @include('Component.User.sidebar-setting')
             <form action="" method="POST" class="col-md-8 col-12 px-0">
