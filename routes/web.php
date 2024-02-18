@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
     Route::get('/profile/{user:slug}/image/{id}', [ProfileController::class, 'showImage'])->name('profile.showImage');
 
-    Route::resource('settings/user', UserSettingController::class)->except('create');
+    Route::resource('settings/user', UserSettingController::class)->except('create','index');
     Route::get('settings/user/{user:slug}/account-management', [ProfileController::class, 'create'])->name('settings.account-management');
     Route::put('settings/{user:slug}/account-management', [ProfileController::class, 'update'])->name('settings.account-management.update');
     // Route::post('settings/{user:slug}/account-management', [ProfileController::class, 'store'])->name(

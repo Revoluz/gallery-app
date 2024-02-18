@@ -14,7 +14,7 @@
         <div class="col d-flex justify-content-center align-items-center">
             <a href="{{ route('profile.index', auth()->user()) }}" class="d-inline d-md-none">
                 <img src="{{ auth()->user()->avatar() }}"
-                    class="rounded-circle   border-black border-2 border  d-md-none {{ Route::is('profile.index') ? ' border-warning' : '' }}"
+                    class="rounded-circle    border-2 border  d-md-none {{ Route::is('profile.index') ? ' border-warning' : 'border-black' }}"
                     alt="User Image" style="width: 48px" />
             </a>
         </div>

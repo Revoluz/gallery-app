@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Storage;
 
 class UserSettingController extends Controller
 {
-    public function index()
-    {
-        return view('User.setting-nav-mobile');
-    }
-
     /**
      * Display the specified resource.
      */
