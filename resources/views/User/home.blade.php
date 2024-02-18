@@ -9,7 +9,6 @@
             <div class="flex-row d-flex align-items-center justify-content-between">
                 <h1 class="fw-bold">Explore</h1>
                 @auth
-
                     <div class="d-flex gap-4">
                         <a href="{{ route('home.index') }}"
                             class="btn btn-lg  {{ Route::is('home.index') ? '' : 'bg-opacity-25' }} rounded-4 fw-bold bg-warning d-none d-md-block">
@@ -53,6 +52,7 @@
                     No Images Found.
                 </div>
             @else
+                @if ($images->count() > 15)
                 <div class="loader text-center mb-5">
                     <div class="d-flex justify-content-center">
                         <div class="page-load-status">
@@ -63,6 +63,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             @endif
         </div>
     </div>
@@ -89,7 +90,7 @@
             var endpoint = "{{ route('search') }}";
         </script>
     @endif
-
+    @if ( $images->count() > 14)
     <script>
         const msnry = new Macy({
             container: ".gallery",
@@ -125,4 +126,5 @@
             }, true);
         });
     </script>
+    @endif
 @endsection

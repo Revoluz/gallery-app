@@ -13,19 +13,19 @@
         </p>
         <div class="d-flex my-2 justify-content-center gap-1">
             @if ($user->profile->instagram)
-                <a href="{{ $user->profile->instagram }}">
-                    <img src="{{ asset('/dist/img/social-icon-color/instagram.svg') }}" alt="" class="" />
-                </a>
+            <a href="{{ $user->profile->instagram }}">
+                <img src="{{ asset('/dist/img/social-icon-color/instagram.svg') }}" alt="" class="" />
+            </a>
             @endif
             @if ($user->profile->twitter)
-                <a href="{{ $user->profile->twitter }}">
-                    <img src="{{ asset('/dist/img/social-icon-color/twitter.svg') }}" alt="" class="" />
-                </a>
+            <a href="{{ $user->profile->twitter }}">
+                <img src="{{ asset('/dist/img/social-icon-color/twitter.svg') }}" alt="" class="" />
+            </a>
             @endif
             @if ($user->profile->facebook)
-                <a href="{{ $user->profile->facebook }}">
-                    <img src="{{ asset('/dist/img/social-icon-color/facebook.svg') }}" alt="" class="" />
-                </a>
+            <a href="{{ $user->profile->facebook }}">
+                <img src="{{ asset('/dist/img/social-icon-color/facebook.svg') }}" alt="" class="" />
+            </a>
             @endif
         </div>
         @can('auth.guard', $user)
@@ -66,7 +66,7 @@
                     <a href="{{ route('profile.showImage', ['id' => $image->id, 'user' => auth()->user()]) }}"
                         class="d-block images">
                         <figure class="imghvr-fade">
-                            <img class="w-100 shadow-sm" src="{{ $image->images() }}" alt="" loading="lazy" />
+                            <img class="w-100 shadow-sm" src="{{ $image->images() }}" alt="" />
                             <figcaption id="cover-title" class="h-100 d-md-flex align-items-end d-none">
                                 {{ $image->name }}
                             </figcaption>
