@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/search', [HomeController::class, 'search'])->name('search');
 
     // images expect index
-    Route::resource('images', GalleryController::class);
+    Route::resource('images', GalleryController::class)->except('index','edit');
     Route::post('/download/image/{id}', [DownloadImageController::class, 'DownloadImage'])->name('download.image');
 
     // profile page
