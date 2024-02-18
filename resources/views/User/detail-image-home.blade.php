@@ -17,12 +17,12 @@
 
     </div>
     <div
-        class="container d-flex col-lg-8 col-md-10 flex-column flex-md-row gallery-rounded h-100 p-0 overflow-hidden row flex-row mb-5 gap-2 mt-0">
+        class="container d-flex col-lg-8 col-md-10 flex-column flex-md-row gallery-rounded h-100 p-0 overflow-hidden row flex-row mb-5 gap-2 mt-0" style="margin-bottom: 128px">
         <div class="col p-0 image">
             <img class="w-100 " src="{{ $image->images() }}" alt="" />
         </div>
         <div class="col py-4 d-flex flex-column gap-2 mb-1">
-            <div class="h-100 overflow-auto">
+            <div class="h-100 overflow-auto detail-image">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-3 g-4 align-items-center">
                         <a href="{{ route('profile.index', $image->user) }}">

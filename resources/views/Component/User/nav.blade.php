@@ -1,5 +1,5 @@
 <nav
-    class="mt-4 col-md-10 mx-2 bg-white px-4 py-3 rounded-4 shadow d-flex justify-content-between align-items-center {{ Route::is('images.show', 'profile.showImage') ? '' : 'position-fixed' }}  z-3 gap-md-4 gap-1">
+    class="mt-4 col-md-10 bg-white px-4 py-3 rounded-4 shadow d-flex justify-content-between align-items-center {{ Route::is('images.show', 'profile.showImage') ? '' : 'position-fixed' }}  z-3 gap-md-4 gap-1">
     <a href="{{ route('home.index') }}">
         <img src="/dist/img/logo-img.png" class="h-100 d-sm-block d-none" alt="" />
     </a>
