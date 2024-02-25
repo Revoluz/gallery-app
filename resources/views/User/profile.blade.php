@@ -13,19 +13,19 @@
         </p>
         <div class="d-flex my-2 justify-content-center gap-1">
             @if ($user->profile->instagram)
-            <a href="{{ $user->profile->instagram }}">
-                <img src="{{ asset('/dist/img/social-icon-color/instagram.svg') }}" alt="" class="" />
-            </a>
+                <a href="{{ $user->profile->instagram }}">
+                    <img src="{{ asset('/dist/img/social-icon-color/instagram.svg') }}" alt="" class="" />
+                </a>
             @endif
             @if ($user->profile->twitter)
-            <a href="{{ $user->profile->twitter }}">
-                <img src="{{ asset('/dist/img/social-icon-color/twitter.svg') }}" alt="" class="" />
-            </a>
+                <a href="{{ $user->profile->twitter }}">
+                    <img src="{{ asset('/dist/img/social-icon-color/twitter.svg') }}" alt="" class="" />
+                </a>
             @endif
             @if ($user->profile->facebook)
-            <a href="{{ $user->profile->facebook }}">
-                <img src="{{ asset('/dist/img/social-icon-color/facebook.svg') }}" alt="" class="" />
-            </a>
+                <a href="{{ $user->profile->facebook }}">
+                    <img src="{{ asset('/dist/img/social-icon-color/facebook.svg') }}" alt="" class="" />
+                </a>
             @endif
         </div>
         @can('auth.guard', $user)
@@ -66,7 +66,7 @@
                     <a href="{{ route('profile.showImage', ['id' => $image->id, 'user' => auth()->user()]) }}"
                         class="d-block images">
                         <figure class="imghvr-fade">
-                            <img class="w-100 shadow-sm rounded-sm" src="{{ $image->images() }}" alt=""  />
+                            <img class="w-100 shadow-sm rounded-sm" src="{{ $image->images() }}" alt="" />
                             <figcaption id="cover-title" class="h-100 d-md-flex align-items-end d-none">
                                 {{ $image->name }}
                             </figcaption>
@@ -74,6 +74,24 @@
                     </a>
                 @endforeach
             </div>
+            @if (!$images->count())
+                <div class="alert alert-danger text-center">
+                    No Images Found.
+                </div>
+            @else
+                @if ($conImages)
+                    <div class="loader text-center mb-5">
+                        <div class="d-flex justify-content-center">
+                            <div class="page-load-status">
+                                <div class="spinner-border infinite-scroll-request" role="status"></div>
+                                {{-- <p class="infinite-scroll-request">Loading...</p> --}}
+                                <p class="infinite-scroll-last">End of content</p>
+                                <p class="infinite-scroll-error">No more pages to load</p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endif
         </div>
     </div>
     @can('auth.guard', $user)
@@ -136,6 +154,8 @@
 @section('plugins')
     <!-- Bootstrap 4 -->
     <script src="{{ asset('dist/js/macy/dist/macy.js') }}"></script>
+    <script src="{{ asset('plugins/infinite-scroll/script.js') }}"></script>
+
     <script>
         const msnry = new Macy({
             container: ".gallery",
@@ -152,4 +172,30 @@
             },
         });
     </script>
+    @if ($conImages)
+        <script>
+            var endpoint = "{{ route('profile.index', auth()->user()) }}";
+            //
+            var elem = document.querySelector('.gallery')
+            var infiniteScroll = new InfiniteScroll(elem, {
+                path: endpoint + '?page=@{{#}}',
+                status: '.page-load-status',
+                history: false,
+                append: '.images',
+                scrollThreshold: 100,
+                // debug: true, // Optional: Enable debugging messages
+
+
+            });
+
+            infiniteScroll.on('append', function(body, path, items, response) {
+                msnry.runOnImageLoad(function() {
+                    // console.log('I only get called when all images are loaded');
+                    msnry.recalculate(true);
+                }, true);
+                // console.log(response);
+
+            });
+        </script>
+    @endif
 @endsection

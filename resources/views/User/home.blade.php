@@ -38,7 +38,6 @@
 @section('plugins')
     <script src="{{ asset('dist/js/macy/dist/macy.js') }}"></script>
     {{-- <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script> --}}
-    <link rel="stylesheet" href="{{ asset('plugins/infinite-scroll/script.js') }}">
     <script src="{{ asset('plugins/infinite-scroll/script.js') }}"></script>
     @if (Route::is('home.index'))
         <script>
@@ -87,7 +86,7 @@
                 // console.log('I only get called when all images are loaded');
                 msnry.recalculate(true);
                 }, true);
-                console.log(response);
+                // console.log(response);
 
         });
 

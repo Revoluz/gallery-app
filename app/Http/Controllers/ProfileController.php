@@ -14,15 +14,21 @@ class ProfileController extends Controller
     public function index(User $user)
     {
         // dd($user);
-        $images = Gallery::where('user_id', $user->id)->latest()->get();
+        $images = Gallery::where('user_id', $user->id)->latest()->paginate(15);
         // $images = $user->galleries;
         // dd($images);
+        if ($images->isEmpty()) {
+            $conImages = false;
+        } else {
+            $conImages = true;
+        }
 
 
         return view('User.profile', [
             'user' => $user,
             'images' => $images,
             'year' => Carbon::now()->year,
+            'conImages'=>$conImages,
         ]);
     }
     public function showImage(User $user, Gallery $id)
