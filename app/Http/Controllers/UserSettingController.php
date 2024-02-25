@@ -71,7 +71,8 @@ class UserSettingController extends Controller
         }
         $user->name = $validated['name'];
         $user->save();
-        return redirect()->back()->with('success', 'succesfully updated');
+        // dd();
+        return redirect()->route('user.edit', $user->slug)->with('success', 'succesfully updated');
     }
 
     /**
