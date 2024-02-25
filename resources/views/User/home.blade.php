@@ -9,7 +9,7 @@
             <div class="flex-row d-flex align-items-center justify-content-between">
                 <h1 class="fw-bold">Explore</h1>
                 @auth
-{{-- tatest,popular,random  --}}
+                    {{-- tatest,popular,random  --}}
                     {{-- <div class="d-flex gap-4">
                         <a href="" class="btn btn-lg  'bg-opacity-25'  rounded-4 fw-bold bg-warning d-none d-md-block">
                             Latest
@@ -45,13 +45,6 @@
             <div class="mt-4 gallery" id="gallery">
                 @include('User.gallery')
             </div>
-            <div class="loader text-center mb-5" style="display: none;">
-                <div class="d-flex justify-content-center">
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
-            </div>
             <div class="alert alert-danger text-center">
                 No Images Found.
             </div>
@@ -71,26 +64,16 @@
 @section('plugins')
     <script src="{{ asset('dist/js/macy/dist/macy.js') }}"></script>
     {{-- <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script> --}}
-    <link rel="stylesheet" href="{{ asset('plugins/infinite-scroll/script.js') }}">
     <script src="{{ asset('plugins/infinite-scroll/script.js') }}"></script>
-    {{-- @if () --}}
-        <script>
-            var endpoint = "{{ route('home.index') }}";
-        </script>
-    {{-- @elseif(Route::is('home.popular'))
-        <script>
-            var endpoint = "{{ route('home.popular') }}";
-        </script>
-    @elseif (Route::is('home.random'))
-        <script>
-            var endpoint = "{{ route('home.random') }}";
-        </script> --}}
-    {{-- @elseif () --}}
-        <script>
-            var endpoint = "{{ route('search') }}";
-        </script>
+    {{-- @if (Route::is('home.index')) --}}
+    <script>
+        var endpoint = "{{ route('home.index') }}";
+    </script>
+    {{-- @elseif (Route::is('search')) --}}
+    <script>
+        var endpoint = "{{ route('search') }}";
+    </script>
     {{-- @endif --}}
-
     <script>
         const msnry = new Macy({
             container: ".gallery",
@@ -108,22 +91,30 @@
             },
 
         });
-        console.log(endpoint);
-
+    </script>
+    {{-- @if ($conImages) --}}
+    <script>
+        //
         var elem = document.querySelector('.gallery')
         var infiniteScroll = new InfiniteScroll(elem, {
-            path: endpoint+'?page=@{{#}}',
+            path: endpoint + '?page=@{{#}}',
             status: '.page-load-status',
             history: false,
             append: '.images',
+            scrollThreshold: 100,
             // debug: true, // Optional: Enable debugging messages
 
+
         });
+
         infiniteScroll.on('append', function(body, path, items, response) {
             msnry.runOnImageLoad(function() {
                 // console.log('I only get called when all images are loaded');
                 msnry.recalculate(true);
             }, true);
+            // console.log(response);
+
         });
     </script>
+    {{-- @endif --}}
 @endsection

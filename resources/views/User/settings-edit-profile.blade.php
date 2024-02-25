@@ -46,7 +46,7 @@
                         <div class="form-group col-md-6">
                             <label for="password">Password</label>
                             <input type="password" class="form-control border-dark" id="password" name="password"
-                                min="8" placeholder="Enter email" />
+                                min="8" placeholder="Enter password" />
                         </div>
                     </div>
                 </div>
