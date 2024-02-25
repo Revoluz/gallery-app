@@ -28,9 +28,9 @@
                 <a href="" class="btn btn-lg btn-outline-dark bg-secondary-subtle col">
                     Settings
                 </a>
-                @can('admin.guard')
+                {{-- @can('admin.guard') --}}
                     <a href="{" class="btn btn-lg btn-dark col"> Dashboard </a>
-                @endcan
+                {{-- @endcan --}}
             </div>
             <form action="" method="POST" class="d-flex">
                 @csrf
@@ -63,12 +63,12 @@
                     </figure>
                 </a>
             </div>
-            @if (!$images->count())
+            {{-- @if (!$images->count()) --}}
                 <div class="alert alert-danger text-center">
                     No Images Found.
                 </div>
-            @else
-                @if ($conImages)
+            {{-- @else --}}
+                {{-- @if ($conImages) --}}
                     <div class="loader text-center mb-5">
                         <div class="d-flex justify-content-center">
                             <div class="page-load-status">
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                @endif
+                {{-- @endif --}}
             @endif
         </div>
     </div>
