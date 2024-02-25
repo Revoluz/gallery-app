@@ -12,7 +12,7 @@
 
     </div>
     <div
-        class="container d-flex col-lg-8 col-md-10 flex-column flex-md-row gallery-rounded h-100 p-0 overflow-hidden row flex-row mb-5 gap-2 mt-0" style="margin-bottom: 128px">
+        class="container d-flex col-lg-8 col-md-10 flex-column flex-md-row gallery-rounded rounded-5 h-100 p-0 overflow-hidden row flex-row mb-5 gap-2 mt-0" style="margin-bottom: 128px">
         <div class="col p-0 image">
             {{-- for image --}}
             <img class="w-100 " src="" alt="" />
@@ -64,13 +64,16 @@
                         </a>
                         <div class="">
                             <div class="m-2 mb-0 d-flex gap-2 ms-0">
-                                <p class="fw-bold mb-0"></p>
+                                <p class="fw-bold mb-0">
+                                    {{-- username  --}}
+                                </p>
                                 <p class="mt-1 mb-0" style="font-size: 12px">
+                                    {{-- create comment --}}
                                 </p>
                             </div>
                             <div>
                                 <p class="mb-1">
-
+                                    {{-- comment --}}
                                 </p>
                                 {{-- can('auth.guard', $comment->user) --}}
                                 <form action="" method="post">
@@ -196,4 +199,27 @@
         {{-- @endcan --}}
     @endsection
     @section('plugins')
+       <script>
+        // responsive image
+        // Get the image element
+        const image = document.querySelector('.image img');
+        // Get the container element
+        const container = document.querySelector('.container');
+        const detailImage = document.querySelector('.detail-image');
+        // Add an event listener to the image's load event
+        // console.log(image.height);
+            // Get the image height
+            const imageHeight = image.height;
+            // Check if the image height is less than 300px
+            if (imageHeight < 300) {
+                // Add the class to the container
+                container.classList.add('flex-column');
+                container.classList.remove('flex-md-row');
+                detailImage.classList.remove('h-100');
+                detailImage.style.height="480px";
+            } else {
+                // Remove the class if it exists (for cases where the image height changes dynamically)
+                container.classList.remove('flex-column');
+            }
+    </script>
     @endsection

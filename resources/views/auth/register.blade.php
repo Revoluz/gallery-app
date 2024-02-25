@@ -8,8 +8,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AdminLTE 3 | Starter</title>
-
+    <title>Register</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('dist/img/shape-logo.png') }}">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
@@ -34,13 +34,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <img src= "{{ asset('/dist/img/logo-img.png') }} " style="width: 200px" alt="" />
         <div class="row col-12 align-items-center">
             <h1 class="text-center">Register</h1>
-            {{-- if (Route::is('register')) --}}
             <form action="" method="POST" class="d-flex flex-column align-items-center">
-                {{-- @else --}}
-                {{-- store admin --}}
-                {{-- <form action="" method="POST"
-                        class="d-flex flex-column align-items-center"> --}}
-                {{-- @endif --}}
+
                 @csrf
                 <div class="form-group col-lg-8 col-12 px-0">
                     <label for="name">Name</label>

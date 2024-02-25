@@ -85,8 +85,8 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <a href="">
-                        <button type="button" class="btn btn-secondary px-5 py-2">Back</button>
+                    <a href="" class="btn btn-secondary px-5 py-2">
+                        Back
                     </a>
                     <button class="btn btn-dark px-5 py-2" type="submit">Save</button>
                 </div>
