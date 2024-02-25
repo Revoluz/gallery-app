@@ -81,7 +81,7 @@ class AdminController extends Controller
             }
         }
         $user->delete();
-        return redirect()->back()->with('succes', 'Successfully delete user');
+        return redirect()->back()->with('success', 'Successfully delete user');
     }
     public function dataImage()
     {

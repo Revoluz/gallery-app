@@ -47,7 +47,7 @@
         @endcan
     </div>
     <!-- gallery container -->
-    <div class="container col-12 gallery-rounded h-100 mt-5 mb-5">
+    <div class="container col-12 gallery-rounded h-100 mt-5">
         <div class="mx-md-4 mx-2">
             <div class="flex-row d-flex align-items-center justify-content-between">
                 <h1 class="fw-bold">Explore</h1>
@@ -66,7 +66,7 @@
                     <a href="{{ route('profile.showImage', ['id' => $image->id, 'user' => auth()->user()]) }}"
                         class="d-block images">
                         <figure class="imghvr-fade">
-                            <img class="w-100 shadow-sm" src="{{ $image->images() }}" alt=""  />
+                            <img class="w-100 shadow-sm rounded-sm" src="{{ $image->images() }}" alt=""  />
                             <figcaption id="cover-title" class="h-100 d-md-flex align-items-end d-none">
                                 {{ $image->name }}
                             </figcaption>
@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="formFile" class="form-label">Photo </label>
+                                <label for="formFile" class="form-label">Image </label>
                                 <input class="form-control" name="image" type="file" id="formFile" />
                                 @error('image')
                                     <div class="invalid-feedback d-block">
@@ -132,7 +132,6 @@
         </div>
     @endcan
     <!-- /.modal-dialog -->
-    </div>
 @endsection
 @section('plugins')
     <!-- Bootstrap 4 -->

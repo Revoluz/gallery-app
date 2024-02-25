@@ -15,20 +15,31 @@ class HomeController extends Controller
     {
         $images = Gallery::where('status', 1)->inRandomOrder('id')->paginate(15);
         // dd($images);
+        if ($images->isEmpty()) {
+            $conImages = false;
+        } else {
+            $conImages = true;
+        }
         abort_if($images->isEmpty(),204);
-        return view('User.home', compact('images'));
+        return view('User.home', compact('images','conImages'));
     }
     public function search(Request $request)
     {
         // 'keyword' sesuai dengan nama form
         $keyword = request()->input('keyword');
         $images = Gallery::where('status', 1)->where('name', 'like', '%' . $keyword . '%')->paginate(15);
+        $image = Gallery::where('status', 1)->where('name', 'like', '%' . $keyword . '%')->count();
         // abort_if($images->isEmpty(), 204);
+        if($image>15){
+            $conImages = true;
+        }else{
+            $conImages = false;
+        }
 
         // if ($request->ajax()) {
         //     $view = view('User.gallery', compact('images'))->render();
         //     return response()->json(['html' => $view]);
         // }
-        return view('User.home', compact('images'));
+        return view('User.home', compact('images', 'conImages'));
     }
 }

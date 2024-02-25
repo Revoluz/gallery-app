@@ -4,20 +4,19 @@
 @section('content')
     <div class="col-lg-8 col-md-10 align-content-start mb-3 mt-5">
         @if (Route::is('profile.showImage'))
-        <a href="{{ route('profile.index',$image->user->slug) }}" class="btn col-md-2 bg-white rounded-4 fw-bold btn-lg shadow py-3">
-
-        @else
-        <a href="{{ route('home.index') }}" class="btn col-md-2 bg-white rounded-4 fw-bold btn-lg shadow py-3">
-
+            <a href="{{ route('profile.index', $image->user->slug) }}"
+                class="btn col-md-2 bg-white rounded-4 fw-bold btn-lg shadow py-3">
+            @else
+                <a href="{{ route('home.index') }}" class="btn col-md-2 bg-white rounded-4 fw-bold btn-lg shadow py-3">
         @endif
-            <h5 class="m-0">
-                <i class="fas fa-arrow-left" style="margin-right: 8px"></i> Back
-            </h5>
+        <h5 class="m-0">
+            <i class="fas fa-arrow-left" style="margin-right: 8px"></i> Back
+        </h5>
         </a>
 
     </div>
-    <div
-        class="container d-flex col-lg-8 col-md-10 flex-column flex-md-row gallery-rounded h-100 p-0 overflow-hidden row flex-row mb-5 gap-2 mt-0" style="margin-bottom: 128px">
+    <div class="container d-flex col-lg-8 col-md-10 flex-column flex-md-row gallery-rounded rounded-5 h-100 p-0 overflow-hidden row flex-row mb-5 gap-2 mt-0"
+        style="margin-bottom: 128px">
         <div class="col p-0 image">
             <img class="w-100 " src="{{ $image->images() }}" alt="" />
         </div>
@@ -74,7 +73,8 @@
                             <div class="">
                                 <div class="m-2 mb-0 d-flex gap-2 ms-0">
                                     <p class="fw-bold mb-0">{{ $comment->user->name }}</p>
-                                    <p class="mt-1 mb-0" style="font-size: 12px">{{ $comment->created_at->diffForHumans() }}
+                                    <p class="mt-1 mb-0" style="font-size: 12px">
+                                        {{ $comment->created_at->diffForHumans() }}
                                     </p>
                                 </div>
                                 <div>
@@ -208,4 +208,29 @@
 
 @endsection
 @section('plugins')
+    <script>
+        // Get the image element
+        const image = document.querySelector('.image img');
+
+        // Get the container element
+        const container = document.querySelector('.container');
+        const detailImage = document.querySelector('.detail-image');
+
+        // Add an event listener to the image's load event
+        // console.log(image.height);
+            // Get the image height
+            const imageHeight = image.height;
+
+            // Check if the image height is less than 300px
+            if (imageHeight < 300) {
+                // Add the class to the container
+                container.classList.add('flex-column');
+                container.classList.remove('flex-md-row');
+                detailImage.classList.remove('h-100');
+                detailImage.style.height="480px";
+            } else {
+                // Remove the class if it exists (for cases where the image height changes dynamically)
+                container.classList.remove('flex-column');
+            }
+    </script>
 @endsection

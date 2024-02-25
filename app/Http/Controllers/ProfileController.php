@@ -14,7 +14,7 @@ class ProfileController extends Controller
     public function index(User $user)
     {
         // dd($user);
-        $images = Gallery::where('user_id', $user->id)->first()->get();
+        $images = Gallery::where('user_id', $user->id)->latest()->get();
         // $images = $user->galleries;
         // dd($images);
 

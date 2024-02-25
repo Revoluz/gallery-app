@@ -84,8 +84,8 @@
                     </form>
                 </div>
                 <div class="mt-4">
-                    <a href="{{ route('profile.index', $user->username) }}">
-                        <button class="btn btn-secondary btn-lg px-5 py-2">Back</button>
+                    <a href="{{ route('profile.index', $user->username) }}" class="btn btn-secondary btn-lg px-5 py-2">
+                        Back
                     </a>
                 </div>
             </div>

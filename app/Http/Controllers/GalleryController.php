@@ -27,8 +27,9 @@ class GalleryController extends Controller
         $validated = $request->validate([
             'name' => 'required|min:3|max:40',
             'description' => 'required|min:3|max:300',
-            'image' => 'required|min:3|max:20480',
+            'image' => 'required|dimensions:min_width=300,min_height=300|max:51200',
         ]);
+        // dd($validated);
         $image = $request->file('image');
         $imageName = time() . "-" . Str::slug($validated['name']) . "." . $image->getClientOriginalExtension();
         $imagePath = $image->storeAs('gallery', $imageName, 'public');

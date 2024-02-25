@@ -18,8 +18,7 @@
                     No Images Found.
                 </div>
             @else
-            @if ($images->count() > 15)
-
+            @if ($conImages)
                 <div class="loader text-center mb-5">
                     <div class="d-flex justify-content-center">
                         <div class="page-load-status">
@@ -50,8 +49,6 @@
             var endpoint = "{{ route('search') }}";
         </script>
     @endif
-
-    @if ( $images->count() > 14)
     <script>
         const msnry = new Macy({
             container: ".gallery",
@@ -69,7 +66,9 @@
             },
 
         });
-        console.log(endpoint);
+    </script>
+    @if ($conImages)
+    <script>
 //
         var elem = document.querySelector('.gallery')
         var infiniteScroll = new InfiniteScroll(elem, {

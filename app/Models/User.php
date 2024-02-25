@@ -71,7 +71,7 @@ class User extends Authenticatable
                 return asset('storage/' . $this->profile->photo);
             }
         };
-        return "https://api.dicebear.com/6.x/fun-emoji/svg?seed={{$this->username}}";
+        return "https://api.dicebear.com/7.x/notionists/svg?seed={{$this->username}}&backgroundColor=b6e3f4,c0aede,d1d4f9";
     }
     public function likes()
     {

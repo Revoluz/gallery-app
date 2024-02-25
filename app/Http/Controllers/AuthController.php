@@ -16,27 +16,30 @@ class AuthController extends Controller
     }
     public function store(Request $request)
     {
-        // dd($request);
         $validated = $request->validate([
             'name' => 'required|min:3|max:100',
             'username' => 'required|min:3|max:100|unique:users,name',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
         ]);
-        User::create([
+        // dd($validated);
+        $user = User::create([
             'name' => $validated['name'],
             'username' => $validated['username'],
             'slug' => Str::slug($validated['username']),
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'level' => 'user',
+
         ]);
+        // dd($user);
+        $profile = $user->profile()->create([
+            'user_id' => $user->id,
+        ]);
+        // dd($profile);
         return redirect()->route('login')->with('success', 'succesfully created account');
     }
-    public function registerAdmin()
-    {
-        return view('auth.register');
-    }
+
     public function storeAdmin(Request $request)
     {
         // dd($request);
@@ -45,16 +48,22 @@ class AuthController extends Controller
             'username' => 'required|min:3|max:100|unique:users,name',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
+            'level' => 'required|in:admin,user'
         ]);
-        User::create([
+        $user=User::create([
             'name' => $validated['name'],
             'username' => $validated['username'],
             'slug' => Str::slug($validated['username']),
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'level' => 'admin',
+            'level' => $validated['level'],
+
         ]);
-        return redirect()->route('login')->with('success', 'succesfully created account');
+        $profile = $user->profile()->create([
+            'user_id' => $user->id,
+        ]);
+
+        return redirect()->route('admin.user')->with('success', 'succesfully created account');
     }
 
     public function login()
@@ -72,7 +81,9 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect()->route('home.index')->with('success', 'Logged in Successfully!');
         }
-        return redirect()->route('login');
+        return redirect()->route('login')->withErrors([
+            'username' => "No matching user found with the provided username and password"
+        ]);;
     }
     public function logout()
     {

@@ -27,8 +27,7 @@ use App\Http\Controllers\DashboardAdminController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::group(['middleware' => ['guest']], function () {
     // register admin
-    Route::get('/register/admin', [AuthController::class, 'registerAdmin'])->name('register.admin');
-    Route::post('/register/admin', [AuthController::class, 'storeAdmin'])->name('register.store.admin');
+    // Route::get('/register/admin', [AuthController::class, 'registerAdmin'])->name('register.admin');
     // register user
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'store'])->name('register.store');
@@ -71,6 +70,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/dashboard/data-user', [AdminController::class, 'dataUser'])->name('admin.user');
         Route::delete('/dashboard/data-user/{user:slug}', [AdminController::class, 'destroy'])->name('admin.user.destroy');
+        Route::post('/register/admin', [AuthController::class, 'storeAdmin'])->name('register.store.admin');
 
         Route::get('/dashboard/data-image', [AdminController::class, 'dataImage'])->name(
             'admin.image'

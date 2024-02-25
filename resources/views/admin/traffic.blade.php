@@ -64,7 +64,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Date</th>
+                                        <th>Month</th>
                                         <th>Total Upload</th>
                                     </tr>
                                 </thead>
@@ -80,7 +80,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Date</th>
+                                        <th>Month</th>
                                         <th>Total Upload</th>
                                     </tr>
                                 </tfoot>

@@ -16,7 +16,7 @@
                         <div class="form-group col-md-10">
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" name="description" rows="3" maxlength="300" placeholder="Enter ...">{{ $data->description ?? '' }}</textarea>
+                                <textarea class="form-control" name="description" rows="3" maxlength="300" placeholder="Enter ...">{{ @old('description',$data->description ?? '') }}</textarea>
                                 @error('description')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="instagram" id="ig-account"
-                                    value="{{ $data->instagram ?? '' }}" placeholder="Input account" />
+                                    value="{{  @old('instagram',$data->instagram ?? '')  }}" placeholder="Input account" />
                                 @error('instagram')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="twitter" id="x-account"
-                                    placeholder="Input account" value="{{ $data->twitter ?? '' }}" />
+                                    placeholder="Input account" value="{{ @old('twitter',$data->twitter ?? '') }}" />
                                 @error('twitter')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="fb-account" name="facebook"
-                                    placeholder="Input account" value="{{ $data->facebook ?? '' }}" />
+                                    placeholder="Input account" value="{{@old('facebook',$data->facebook ?? '')}}" />
                                 @error('facebook')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -86,8 +86,8 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <a href="{{ route('profile.index', $user->name) }}">
-                        <button type="button" class="btn btn-secondary px-5 py-2">Back</button>
+                    <a href="{{ route('profile.index', $user->slug) }}" class="btn btn-secondary px-5 py-2">
+Back
                     </a>
                     <button class="btn btn-dark px-5 py-2" type="submit">Save</button>
                 </div>

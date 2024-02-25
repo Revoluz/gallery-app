@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login</title>
-
+    <link rel="icon" type="image/x-icon" href="{{ asset('dist/img/shape-logo.png') }}">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
@@ -39,7 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <input type="text" style="height: 56px" class="form-control border-black rounded-1"
                         name="username" id="username" placeholder="Username" />
                     @error('username')
-                        <div class="invalid-feedback d-block">
+                        <div class="invalid-feedback d-block text-red">
                             {{ $message }}
                         </div>
                     @enderror
@@ -49,7 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <input type="password" style="height: 56px" name="password"
                         class="form-control border-black rounded-1" id="password" placeholder="Password" />
                     @error('password')
-                        <div class="invalid-feeback d-block">
+                        <div class="invalid-feeback d-block text-red">
                             {{ $message }}
                         </div>
                     @enderror
