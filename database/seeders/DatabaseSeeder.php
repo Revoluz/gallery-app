@@ -5,8 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use Carbon\Carbon;
+use Faker\Factory;
 use App\Models\User;
 use App\Models\Gallery;
+use App\Models\Profile;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -19,85 +21,63 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Buat data user
+        // \App\Models\User::factory(10)->create();
+
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
         $users = [
             [
                 'username' => 'admin',
-                'password' => Hash::make('password'),
+                'name' => 'admin',
                 'slug' => Str::slug('admin'),
-                'email' => 'admin@example.com',
-                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
                 'level' => 'admin',
+                'password' => Hash::make('password'),
             ],
             [
                 'username' => 'user1',
-                'password' => Hash::make('password'),
+                'name' => 'user1',
                 'slug' => Str::slug('user1'),
-                'email' => 'user1@example.com',
-                'name' => 'User1',
+                'email' => 'user1@gmail.com',
                 'level' => 'user',
-            ],
-            [
+                'password' => Hash::make('password'),
+            ],            [
                 'username' => 'user2',
-                'password' => Hash::make('password'),
+                'name' => 'user2',
                 'slug' => Str::slug('user2'),
-                'email' => 'user2@example.com',
-                'name' => 'User2',
+                'email' => 'user2@gmail.com',
                 'level' => 'user',
-            ],
-            [
-                'username' => 'user3',
                 'password' => Hash::make('password'),
-                'slug' => Str::slug('user3'),
-                'email' => 'user3@example.com',
-                'name' => 'User3',
-                'level' => 'user',
             ],
         ];
-
-        // Masukkan data user ke database
-        DB::table('users')->insert($users);
-        // for ($i = 1; $i <= 21; $i++) {
-        //     if ($i < 20) {
-        //         $i = "0" . $i;
-        //         $gallery['created_at']  = Carbon::now();
-        //         $gallery['user_id']  = 1;
-        //     }
-        //     $gallery = [
-        //         'name' => 'img' . $i . '.png',
-        //         'path' => 'gallery/img' . $i . '.png',
-        //         'user_id' => 1,
-        //         'description' => 'Deskripsi galeri' . $i,
-        //         // 'time_upload' => now(),
-        //     ];
-
-        //     // Masukkan data galeri ke database
-        //     DB::table('galleries')->insert($gallery);
-        // }
+        User::insert($users);
+        $faker = Factory::create();
 
         for ($i = 1; $i <= 60; $i++) {
-
             $gallery = [
-                'name' => 'img' . $i . '.jpg',
+                'name' => Str::random(5),
                 'path' => 'gallery/img' . $i . '.jpg',
-                'description' => 'Deskripsi galeri ' . $i,
+                'description' => $faker->sentence(10)
             ];
-
-            // Tentukan user_id dan created_at berdasarkan kondisinya
-            if ($i < 36) {
+            if ($i <= 20) {
                 $gallery['user_id'] = 1;
                 $gallery['created_at'] = Carbon::now();
-            } elseif ($i <= 50) {
+            } elseif ($i <= 40) {
                 $gallery['user_id'] = 2;
                 $gallery['created_at'] = Carbon::now()->subMonth();
-            } else {
+            } elseif ($i <= 60) {
                 $gallery['user_id'] = 3;
                 $gallery['created_at'] = Carbon::now()->subMonths(2);
             }
-
-            // Masukkan data galeri ke database
-            // Gallery::create($gallery);
-            DB::table('galleries')->insert($gallery);
+            Gallery::create($gallery);
         }
+        $profiles = [
+            ['user_id' => 1],
+            ['user_id' => 2],
+            ['user_id' => 3],
+        ];
+        Profile::insert($profiles);
     }
 }

@@ -15,7 +15,7 @@
                     </div>
                     <div class="info">
                         <a href="{{ route('profile.index', auth()->user()) }}"
-                            class="d-block">{{ auth()->user()->slug }}</a>
+                            class="d-block">{{ auth()->user()->username }}</a>
                     </div>
                 </div>
 

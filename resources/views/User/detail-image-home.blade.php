@@ -220,7 +220,7 @@
         // console.log(image.height);
             // Get the image height
             const imageHeight = image.height;
-
+            console.log(imageHeight);
             // Check if the image height is less than 300px
             if (imageHeight < 300) {
                 // Add the class to the container
@@ -228,9 +228,6 @@
                 container.classList.remove('flex-md-row');
                 detailImage.classList.remove('h-100');
                 detailImage.style.height="480px";
-            } else {
-                // Remove the class if it exists (for cases where the image height changes dynamically)
-                container.classList.remove('flex-column');
             }
     </script>
 @endsection

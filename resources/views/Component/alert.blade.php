@@ -1,6 +1,4 @@
         @if (session('success'))
-            <div class="wrapper">
-
                 <script>
                     $(document).ready(function() {
                         // Notifikasi toastr berhasil

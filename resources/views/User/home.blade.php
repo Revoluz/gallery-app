@@ -76,7 +76,7 @@
             history: false,
             append: '.images',
             scrollThreshold: 100,
-            // debug: true, // Optional: Enable debugging messages
+            debug: true, // Optional: Enable debugging messages
 
 
         });
@@ -86,7 +86,7 @@
                 // console.log('I only get called when all images are loaded');
                 msnry.recalculate(true);
                 }, true);
-                // console.log(response);
+                console.log(response);
 
         });
 

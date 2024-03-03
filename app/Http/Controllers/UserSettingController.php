@@ -53,10 +53,10 @@ class UserSettingController extends Controller
         ];
 
         if ($request->username != $user->username) {
-            $validated['username'] = 'required|min:3|max:100|unique:users,name';
+            $rules['username'] = 'required|min:3|max:100|unique:users,username';
         }
         if ($request->email != $user->email) {
-            $validated['email'] = 'required|email|unique:users,email';
+            $rules['email'] = 'required|email|unique:users,email';
         }
         $validated = $request->validate($rules);
         if ($request->password !== null) {
@@ -70,6 +70,7 @@ class UserSettingController extends Controller
             $user->email = $validated['email'];
         }
         $user->name = $validated['name'];
+        // dd($validated);
         $user->save();
         // dd();
         return redirect()->route('user.edit', $user->slug)->with('success', 'succesfully updated');
