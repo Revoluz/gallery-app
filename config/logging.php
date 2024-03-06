@@ -104,7 +104,28 @@ return [
             ],
             'processors' => [PsrLogMessageProcessor::class],
         ],
-
+        'search' => [
+            'driver' => 'monolog',
+            'name'=>'search',
+            'level' => env('LOG_LEVEL', 'info'),
+            'handler' => StreamHandler::class,
+            'formatter' => \Monolog\Formatter\JsonFormatter::class,
+            'with' => [
+                'stream' => storage_path("logs/search.log"),
+            ],
+            'processors' => [PsrLogMessageProcessor::class],
+        ],
+        'login' => [
+            'driver' => 'monolog',
+            'name' => 'login',
+            'level' => env('LOG_LEVEL', 'info'),
+            'handler' => StreamHandler::class,
+            'formatter' => \Monolog\Formatter\JsonFormatter::class,
+            'with' => [
+                'stream' => storage_path("logs/login.log"),
+            ],
+            'processors' => [PsrLogMessageProcessor::class],
+        ],
         'syslog' => [
             'driver' => 'syslog',
             'level' => env('LOG_LEVEL', 'debug'),

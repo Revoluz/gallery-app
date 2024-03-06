@@ -7,6 +7,7 @@ use App\Models\Gallery;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use function PHPUnit\Framework\returnArgument;
 
 class HomeController extends Controller
@@ -27,6 +28,9 @@ class HomeController extends Controller
     {
         // 'keyword' sesuai dengan nama form
         $keyword = request()->input('keyword');
+        // dd($keyword);
+        $slackLogger = Log::channel('search');
+        $slackLogger->info('User searched for {keyword}',['keyword'=> $keyword]);
         $images = Gallery::where('status', 1)->where('name', 'like', '%' . $keyword . '%')->paginate(15);
         $image = Gallery::where('status', 1)->where('name', 'like', '%' . $keyword . '%')->count();
         // abort_if($images->isEmpty(), 204);

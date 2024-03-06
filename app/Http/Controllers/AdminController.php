@@ -21,6 +21,8 @@ class AdminController extends Controller
             ->selectRaw('COUNT(*) as total, MONTH(created_at) as month')
             ->groupBy('month')
             ->get();
+            // logic
+            // where year $year dan menghitung total data pada setiap bulan, mendapatkan data bulan/bulan ke berapa lalu mengelompokan berdasarkan bulan
         $month = [];
         $total = [];
 
@@ -33,7 +35,7 @@ class AdminController extends Controller
         $years = Gallery::selectRaw('YEAR(created_at) as year')
             ->distinct()
             ->pluck('year');
-        // dd($years);
+            // berfungsi mendapatkan data tahun yang ada di program
 
         // 'trafficChart' => $trafficChart->build($month, $total, $year),
         // dd($month);
@@ -43,7 +45,6 @@ class AdminController extends Controller
             'data' => $data,
             'year' => Carbon::now()->year,
             'years' => $years,
-
         ]);
     }
     public function dataUser()

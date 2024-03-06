@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
@@ -78,12 +80,22 @@ class AuthController extends Controller
         ]);
         // dd(Auth::attempt($credential));
         if (Auth::attempt($credential)) {
+            $response = Http::get('https://api.ipify.org');
+            // $ipAddress = $request->ip();
+            // $ipAddress = $response->ok() ? $request->ip() : null;
+            $ipAddress = $response->ok() ? $response->body() : null;
+            // Hit API untuk mendapatkan lokasi pengguna berdasarkan alamat IP
+            $locationResponse = Http::get("http://ip-api.com/json/$ipAddress");
+            $locationData = $locationResponse->json();
+            $location = $locationData['city'];
+            $chennelLog = Log::channel('login');
+            $chennelLog->info('User login attempt: username = {username},From {location}',['username' => $credential['username'],'location'=>$location]);
             $request->session()->regenerate();
             return redirect()->route('home.index')->with('success', 'Logged in Successfully!');
         }
         return redirect()->route('login')->withErrors([
             'username' => "No matching user found with the provided username and password"
-        ]);;
+        ]);
     }
     public function logout()
     {
